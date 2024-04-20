@@ -1,89 +1,62 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace mabLibs
 {
     public class UserInput
     {
-        // Properties to store user input values
-        public string ProperNounPersonName { get; private set; }
-        public string Noun { get; private set; }
-        public string AdjectiveFeeling { get; private set; }
-        public string Verb { get; private set; }
-        public string Adjective { get; private set; }
-        public string Animal { get; private set; }
-        public string Ccolor { get; private set; }
-        public string VerbEndingInIng { get; private set; }
-        public string AdverbEndingInLy { get; private set; }
-        public string Nnumber { get; private set; }
-        public string MeasureOfTime { get; private set; }
-        public string Color { get; private set; }
-        public string SillyWord { get; private set; }
-        public string ModeOfTransportation { get; private set; }
-        public string PartOfTheBody { get; private set; }
-        public string MagicalCreaturePlural { get; private set; }
-        public string Place { get; private set; }
-        public string RoomInAHouse { get; private set; }
-        public string NounPlural { get; private set; }
-
-        public UserInput()
+        public Dictionary<string, string> GetInputValues()
         {
-            // Prompt the user for input for each unique value
-            Console.WriteLine("Proper Noun (Person’s Name):");
-            ProperNounPersonName = Console.ReadLine();
+            Dictionary<string, string> inputValues = new Dictionary<string, string>();
 
-            Console.WriteLine("Noun:");
-            Noun = Console.ReadLine();
+            // Define keys
+            Dictionary<string, string> prompts = new Dictionary<string, string>
+            {
+                { "Proper Noun (Person’s Name):", "ProperNounPersonName" },
+                { "Noun:", "Noun" },
+                { "Adjective (Feeling):", "AdjectiveFeeling" },
+                { "Verb:", "Verb" },
+                { "Adjective:", "Adjective" },
+                { "Animal:", "Animal" },
+                { "Color:", "Color" },
+                { "Verb (ending in ing):", "VerbEndingInIng" },
+                { "Adverb (ending in ly):", "AdverbEndingInLy" },
+                { "Number:", "Number" },
+                { "Measure of Time:", "MeasureOfTime" },
+                { "Silly Word:", "SillyWord" },
+                { "Mode of Transportation:", "ModeOfTransportation" },
+                { "Part of the Body:", "PartOfTheBody" },
+                { "Magical Creature (Plural):", "MagicalCreaturePlural" },
+                { "Place:", "Place" },
+                { "Room in a House:", "RoomInAHouse" },
+                { "Noun (Plural):", "NounPlural" }
+            };
 
-            Console.WriteLine("Adjective (Feeling):");
-            AdjectiveFeeling = Console.ReadLine();
+            // user input using the defined libs
+            foreach (var prompt in prompts)
+            {
+                PromptInput(prompt.Key, prompt.Value, inputValues);
+            }
 
-            Console.WriteLine("Verb:");
-            Verb = Console.ReadLine();
+            return inputValues;
+        }
 
-            Console.WriteLine("Adjective:");
-            Adjective = Console.ReadLine();
+        // prompt input and add to dict
+        private void PromptInput(string promptMessage, string key, Dictionary<string, string> inputValues)
+        {
+            Console.WriteLine(promptMessage);
+            string input = Console.ReadLine();
 
-            Console.WriteLine("Animal:");
-            Animal = Console.ReadLine();
-
-            Console.WriteLine("Color:");
-            Ccolor = Console.ReadLine();
-
-            Console.WriteLine("Verb (ending in ing):");
-            VerbEndingInIng = Console.ReadLine();
-
-            Console.WriteLine("Adverb (ending in ly):");
-            AdverbEndingInLy = Console.ReadLine();
-
-            Console.WriteLine("Number:");
-            Nnumber = Console.ReadLine();
-
-            Console.WriteLine("Measure of Time:");
-            MeasureOfTime = Console.ReadLine();
-
-            Console.WriteLine("Color:");
-            Color = Console.ReadLine();
-
-            Console.WriteLine("Silly Word:");
-            SillyWord = Console.ReadLine();
-
-            Console.WriteLine("Mode of Transportation:");
-            ModeOfTransportation = Console.ReadLine();
-
-            Console.WriteLine("Part of the Body:");
-            PartOfTheBody = Console.ReadLine();
-
-            Console.WriteLine("Magical Creature (Plural):");
-            MagicalCreaturePlural = Console.ReadLine();
-
-            Console.WriteLine("Place:");
-            Place = Console.ReadLine();
-
-            Console.WriteLine("Room in a House:");
-            RoomInAHouse = Console.ReadLine();
-
-            Console.WriteLine("Noun (Plural):");
-            NounPlural = Console.ReadLine();
+            // Check null or empty
+            if (!string.IsNullOrEmpty(input))
+            {
+                inputValues.Add(key, input);
+            }
+            else
+            {
+                Console.WriteLine("Input cannot be null or empty. Please try again.");
+                PromptInput(promptMessage, key, inputValues); // Prompt the user again
+            }
         }
     }
 }

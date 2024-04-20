@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("mabLibs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87224c5994f4dfcf05018d3bf5c8a6c94821d02b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99f846bb563e0ffafbc8d0ee584f117d855fed24")]
 [assembly: System.Reflection.AssemblyProductAttribute("mabLibs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("mabLibs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

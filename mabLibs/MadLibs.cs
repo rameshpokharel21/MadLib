@@ -1,59 +1,75 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace mabLibs
 {
     public class MadLibs
     {
         private Random random;
-        private UserInput userInput;
 
         public MadLibs()
         {
             random = new Random();
-            userInput = new UserInput();
         }
 
-        public void DisplayRandomMadLib()
+        public void DisplayRandomMadLib(Dictionary<string, string> inputValues)
         {
-            // Generate a random number to select which Mad Lib to display
-            int madLibIndex = random.Next(2); // Assuming you have 2 Mad Libs
+            int madLibIndex = random.Next(3);
 
-            // Select and display the chosen Mad Lib
             if (madLibIndex == 0)
             {
-                MadLibOne();
+                MadLibOne(inputValues);
+            }
+            else if (madLibIndex == 1)
+            {
+                MadLibTwo(inputValues);
             }
             else
             {
-                MadLibTwo();
+                MadLibThree(inputValues);
             }
         }
 
-        private void MadLibOne()
+        private void MadLibOne(Dictionary<string, string> inputValues)
         {
             // Mad Lib One
-            Console.WriteLine($"This weekend I am going camping with {userInput.ProperNounPersonName}. I packed \n" +
-               $"my lantern, sleeping bag, and {userInput.Noun}. I am so {userInput.AdjectiveFeeling} to {userInput.Verb} in a \n" +
-               $"tent. I am {userInput.AdjectiveFeeling} we might see a {userInput.Animal}, they are kind of dangerous. \n" +
-               $"We are going to hike, fish, and {userInput.Verb}. I have heard that the \n" +
-               $"{userInput.Ccolor} lake is great for {userInput.VerbEndingInIng}. Then we will {userInput.AdverbEndingInLy} hike through \n" +
-               $"the forest for {userInput.Nnumber} {userInput.MeasureOfTime}. If I see a {userInput.Color} {userInput.Animal} \n" +
+            Console.WriteLine($"This weekend I am going camping with {inputValues["ProperNounPersonName"]}. I packed \n" +
+               $"my lantern, sleeping bag, and {inputValues["Noun"]}. I am so {inputValues["AdjectiveFeeling"]} to {inputValues["Verb"]} in a \n" +
+               $"tent. I am {inputValues["AdjectiveFeeling"]} we might see a {inputValues["Animal"]}, they are kind of dangerous. \n" +
+               $"We are going to hike, fish, and {inputValues["Verb"]}. I have heard that the \n" +
+               $"{inputValues["Color"]} lake is great for {inputValues["VerbEndingInIng"]}. Then we will {inputValues["AdverbEndingInLy"]} hike through \n" +
+               $"the forest for {inputValues["Number"]} {inputValues["MeasureOfTime"]}. If I see a {inputValues["Color"]} {inputValues["Animal"]} \n" +
                $"while hiking, I am going to bring it home as a pet! At night we will \n" +
-               $"tell {userInput.Nnumber} {userInput.SillyWord} stories and roast {userInput.Noun} around the \n" +
+               $"tell {inputValues["Number"]} {inputValues["SillyWord"]} stories and roast {inputValues["Noun"]} around the \n" +
                $"campfire!!");
         }
 
-        private void MadLibTwo()
+
+        private void MadLibTwo(Dictionary<string, string> inputValues)
         {
             // Mad Lib Two
-            Console.WriteLine($"It was about {userInput.Nnumber} {userInput.MeasureOfTime} ago when I came to the hospital in a {userInput.ModeOfTransportation}.  \n" +
-                $"The hospital is a/an {userInput.Adjective} place, there are a lot of {userInput.Adjective} {userInput.Noun} here. \n" +
-                $"There are nurses here who have {userInput.Ccolor} {userInput.PartOfTheBody}. \n" +
-                $"If someone wants to come into my room I told them that they have to {userInput.Verb} first. \n" +
-                $"I have decorated my room with {userInput.Nnumber} {userInput.Noun}. \n" +
-                $"Today a doctor came into my room and they were wearing a {userInput.Noun} on their {userInput.PartOfTheBody} .  \n" +
-                $"I heard that all doctors {userInput.Verb} {userInput.Noun}   every day for breakfast.  \n" +
-                $"The most {userInput.Adjective} thing about being in the hospital is the {userInput.SillyWord} {userInput.Noun}! \n");
+            Console.WriteLine($"It was about {inputValues["Number:"]} {inputValues["MeasureOfTime"]} ago when I came to the hospital in a {inputValues["ModeOfTransportation"]}.  \n" +
+                $"The hospital is a/an {inputValues["Adjective"]} place, there are a lot of {inputValues["Adjective"]} {inputValues["Noun"]} here. \n" +
+                $"There are nurses here who have {inputValues["Color"]} {inputValues["PartOfTheBody"]}. \n" +
+                $"If someone wants to come into my room I told them that they have to {inputValues["Verb"]} first. \n" +
+                $"I have decorated my room with {inputValues["Number"]} {inputValues["Noun"]}. \n" +
+                $"Today a doctor came into my room and they were wearing a {inputValues["Noun"]} on their {inputValues["PartOfTheBody"]} .  \n" +
+                $"I heard that all doctors {inputValues["Verb"]} {inputValues["Noun"]}   every day for breakfast.  \n" +
+                $"The most {inputValues["Adjective"]} thing about being in the hospital is the {inputValues["SillyWord"]} {inputValues["Noun"]}! \n");
         }
+
+        private void MadLibThree(Dictionary<string, string> inputValues)
+        {
+            Console.WriteLine($"Dear {inputValues["ProperNounPersonName"]}, \n" +
+                "\n" +
+                $"I am writing to you from a {inputValues["Adjective"]} castle in an enchanted forest. \n" +
+                $"I found myself here one day after going for a ride on a {inputValues["Color"]} {inputValues["Animal"]} in {inputValues["Place"]}. \n" +
+                $"There are {inputValues["Adjective"]} {inputValues["MagicalCreaturePlural"]} and {inputValues["Adjective"]} {inputValues["MagicalCreaturePlural"]} here! \n" +
+                $"In the {inputValues["RoomInAHouse"]} there is a pool full of {inputValues["Noun"]}. \n" +
+                $"I fall asleep each night on a {inputValues["Noun"]} of {inputValues["Noun"]} and dream of {inputValues["Adjective"]} {inputValues["NounPlural"]}. \n" +
+                $"It feels as though I have lived here for {inputValues["Number"]} {inputValues["MeasureOfTime"]}. \n" +
+                $"I hope one day you can visit, although the only way to get here now is {inputValues["VerbEndingInIng"]} on a {inputValues["Adjective"]} {inputValues["Noun"]}!! \n");
+        }
+
     }
 }

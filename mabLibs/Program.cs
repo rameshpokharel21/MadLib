@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace mabLibs
 {
@@ -6,11 +7,17 @@ namespace mabLibs
     {
         static void Main(string[] args)
         {
-            // Create an instance of the MadLibs class
+            // UserInput to get values
+            UserInput userInput = new UserInput();
+
+            // Gets input as dict
+            Dictionary<string, string> inputValues = userInput.GetInputValues();
+
+            // Create the MadLibs class
             MadLibs madLibs = new MadLibs();
 
-            // Call the method to display a random Mad Lib
-            madLibs.DisplayRandomMadLib();
+            //method to display random Lib with values
+            madLibs.DisplayRandomMadLib(inputValues);
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
