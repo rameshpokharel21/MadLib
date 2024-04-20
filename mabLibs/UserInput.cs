@@ -32,7 +32,7 @@ namespace mabLibs
                 { "Noun (Plural):", "NounPlural" }
             };
 
-            // user input using the defined libs
+            // user input using defined libs
             foreach (var prompt in prompts)
             {
                 PromptInput(prompt.Key, prompt.Value, inputValues);
