@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace mabLibs
-{
+namespace mabLibs;
+
     public class UserInput
     {
         public Dictionary<string, string> GetInputValues()
@@ -21,7 +21,7 @@ namespace mabLibs
                 { "Color:", "Color" },
                 { "Verb (ending in ing):", "VerbEndingInIng" },
                 { "Adverb (ending in ly):", "AdverbEndingInLy" },
-                { "Number:", "Number" },
+                { "Number (integer):", "Number" },
                 { "Measure of Time:", "MeasureOfTime" },
                 { "Silly Word:", "SillyWord" },
                 { "Mode of Transportation:", "ModeOfTransportation" },
@@ -35,7 +35,7 @@ namespace mabLibs
             // user input using defined libs
             foreach (var prompt in prompts)
             {
-                PromptInput(prompt.Key, prompt.Value, inputValues);
+                PromptInput(prompt.Key.Trim(), prompt.Value.Trim(), inputValues);
             }
 
             return inputValues;
@@ -44,9 +44,10 @@ namespace mabLibs
         // prompt input and add to dict
         private void PromptInput(string promptMessage, string key, Dictionary<string, string> inputValues)
         {
-            Console.WriteLine(promptMessage);
-            string input = Console.ReadLine();
+            Console.Write($"{promptMessage} ");
 
+            string? input = Console.ReadLine();
+           
             // Check null or empty
             if (!string.IsNullOrEmpty(input))
             {
@@ -59,4 +60,4 @@ namespace mabLibs
             }
         }
     }
-}
+

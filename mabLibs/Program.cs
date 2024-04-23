@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace mabLibs
-{
-    class Program
+namespace mabLibs;
+
+     class Program
     {
         static void Main(string[] args)
         {
@@ -14,15 +14,14 @@ namespace mabLibs
             Dictionary<string, string> inputValues = userInput.GetInputValues();
 
             // Create the MadLibs class
-            MadLibs madLibs = new MadLibs();
-
+            MadLibs madLibs = new MadLibs(inputValues);
+            
             //method to display random Lib with values
-            madLibs.DisplayRandomMadLib(inputValues);
+            madLibs.DisplayRandomMadLib();
+            
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
-
-            Console.Clear();
+        
+            
         }
     }
-}
+

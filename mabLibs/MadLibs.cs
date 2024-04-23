@@ -1,75 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace mabLibs
-{
+namespace mabLibs;
+
     public class MadLibs
     {
-        private Random random;
+        
+        public Dictionary<string, string> InputValues{get; set;}
 
-        public MadLibs()
+        public MadLibs(Dictionary<string, string> inputValues)
         {
-            random = new Random();
+    
+            InputValues = inputValues;
+
         }
 
-        public void DisplayRandomMadLib(Dictionary<string, string> inputValues)
+
+        public void DisplayRandomMadLib()
         {
+            Random random = new Random();
             int madLibIndex = random.Next(3);
 
             if (madLibIndex == 0)
             {
-                MadLibOne(inputValues);
+                MadLibOne();
             }
             else if (madLibIndex == 1)
             {
-                MadLibTwo(inputValues);
+                MadLibTwo();
             }
             else
             {
-                MadLibThree(inputValues);
+                MadLibThree();
             }
         }
 
-        private void MadLibOne(Dictionary<string, string> inputValues)
+        // Mad Lib One
+        //uses raw string literals
+        private void MadLibOne()
         {
-            // Mad Lib One
-            Console.WriteLine($"This weekend I am going camping with {inputValues["ProperNounPersonName"]}. I packed \n" +
-               $"my lantern, sleeping bag, and {inputValues["Noun"]}. I am so {inputValues["AdjectiveFeeling"]} to {inputValues["Verb"]} in a \n" +
-               $"tent. I am {inputValues["AdjectiveFeeling"]} we might see a {inputValues["Animal"]}, they are kind of dangerous. \n" +
-               $"We are going to hike, fish, and {inputValues["Verb"]}. I have heard that the \n" +
-               $"{inputValues["Color"]} lake is great for {inputValues["VerbEndingInIng"]}. Then we will {inputValues["AdverbEndingInLy"]} hike through \n" +
-               $"the forest for {inputValues["Number"]} {inputValues["MeasureOfTime"]}. If I see a {inputValues["Color"]} {inputValues["Animal"]} \n" +
-               $"while hiking, I am going to bring it home as a pet! At night we will \n" +
-               $"tell {inputValues["Number"]} {inputValues["SillyWord"]} stories and roast {inputValues["Noun"]} around the \n" +
-               $"campfire!!");
+            
+            Console.WriteLine(
+                $"""
+                    ---------------------------------------------------------------------------------------------------
+
+                    This weekend I am going camping with {InputValues["ProperNounPersonName"]}. I packed
+                    my lantern, sleeping bag, and {InputValues["Noun"]}. I am so {InputValues["AdjectiveFeeling"]} to {InputValues["Verb"]} in a
+                    tent. I am {InputValues["AdjectiveFeeling"]} we might see a {InputValues["Animal"]}, they are kind of dangerous.
+                    We are going to hike, fish, and {InputValues["Verb"]}. I have heard that the
+                    {InputValues["Color"]} lake is great for {InputValues["VerbEndingInIng"]}. Then we will {InputValues["AdverbEndingInLy"]} hike through
+                    the forest for {InputValues["Number"]} {InputValues["MeasureOfTime"]}. If I see a {InputValues["Color"]} {InputValues["Animal"]}
+                    while hiking, I am going to bring it home as a pet! At night we will
+                    tell {InputValues["Number"]} {InputValues["SillyWord"]} stories and roast {InputValues["Noun"]} around the
+                    campfire!!
+                    
+                    --------------------------------------------------------------------------------------------------
+                """
+            );
         }
 
-
-        private void MadLibTwo(Dictionary<string, string> inputValues)
+        //uses StringBuilder
+        private void MadLibTwo()
         {
-            // Mad Lib Two
-            Console.WriteLine($"It was about {inputValues["Number:"]} {inputValues["MeasureOfTime"]} ago when I came to the hospital in a {inputValues["ModeOfTransportation"]}.  \n" +
-                $"The hospital is a/an {inputValues["Adjective"]} place, there are a lot of {inputValues["Adjective"]} {inputValues["Noun"]} here. \n" +
-                $"There are nurses here who have {inputValues["Color"]} {inputValues["PartOfTheBody"]}. \n" +
-                $"If someone wants to come into my room I told them that they have to {inputValues["Verb"]} first. \n" +
-                $"I have decorated my room with {inputValues["Number"]} {inputValues["Noun"]}. \n" +
-                $"Today a doctor came into my room and they were wearing a {inputValues["Noun"]} on their {inputValues["PartOfTheBody"]} .  \n" +
-                $"I heard that all doctors {inputValues["Verb"]} {inputValues["Noun"]}   every day for breakfast.  \n" +
-                $"The most {inputValues["Adjective"]} thing about being in the hospital is the {inputValues["SillyWord"]} {inputValues["Noun"]}! \n");
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("\n-----------------------------------------------------------------------------------");
+            builder.AppendFormat($"It was about {InputValues["Number"]} {InputValues["MeasureOfTime"]} ago when I came to the hospital in a {InputValues["ModeOfTransportation"]}.  \n");
+            builder.AppendFormat($"The hospital is a/an {InputValues["Adjective"]} place, there are a lot of {InputValues["Adjective"]} {InputValues["Noun"]} here. \n");
+            builder.AppendFormat($"There are nurses here who have {InputValues["Color"]} {InputValues["PartOfTheBody"]}. \n");
+            builder.AppendFormat($"If someone wants to come into my room I told them that they have to {InputValues["Verb"]} first. \n");
+            builder.AppendFormat($"I have decorated my room with {InputValues["Number"]} {InputValues["Noun"]}. \n");
+            builder.AppendFormat($"Today a doctor came into my room and they were wearing a {InputValues["Noun"]} on their {InputValues["PartOfTheBody"]} .  \n");
+            builder.AppendFormat($"I heard that all doctors {InputValues["Verb"]} {InputValues["Noun"]}   every day for breakfast.  \n");
+            builder.AppendFormat($"The most {InputValues["Adjective"]} thing about being in the hospital is the {InputValues["SillyWord"]} {InputValues["Noun"]}! \n");
+            builder.AppendLine("\n-----------------------------------------------------------------------------------");
+            Console.WriteLine(builder.ToString());
         }
 
-        private void MadLibThree(Dictionary<string, string> inputValues)
+        
+        private void MadLibThree()
         {
-            Console.WriteLine($"Dear {inputValues["ProperNounPersonName"]}, \n" +
-                "\n" +
-                $"I am writing to you from a {inputValues["Adjective"]} castle in an enchanted forest. \n" +
-                $"I found myself here one day after going for a ride on a {inputValues["Color"]} {inputValues["Animal"]} in {inputValues["Place"]}. \n" +
-                $"There are {inputValues["Adjective"]} {inputValues["MagicalCreaturePlural"]} and {inputValues["Adjective"]} {inputValues["MagicalCreaturePlural"]} here! \n" +
-                $"In the {inputValues["RoomInAHouse"]} there is a pool full of {inputValues["Noun"]}. \n" +
-                $"I fall asleep each night on a {inputValues["Noun"]} of {inputValues["Noun"]} and dream of {inputValues["Adjective"]} {inputValues["NounPlural"]}. \n" +
-                $"It feels as though I have lived here for {inputValues["Number"]} {inputValues["MeasureOfTime"]}. \n" +
-                $"I hope one day you can visit, although the only way to get here now is {inputValues["VerbEndingInIng"]} on a {inputValues["Adjective"]} {inputValues["Noun"]}!! \n");
+            Console.WriteLine(
+                $"""
+                    -------------------------------------------------------------------------------------------------
+
+                    Dear {InputValues["ProperNounPersonName"]},
+                    
+                    I am writing to you from a {InputValues["Adjective"]} castle in an enchanted forest.
+                    I found myself here one day after going for a ride on a {InputValues["Color"]} {InputValues["Animal"]} in {InputValues["Place"]}.
+                    There are {InputValues["Adjective"]} {InputValues["MagicalCreaturePlural"]} and {InputValues["Adjective"]} {InputValues["MagicalCreaturePlural"]} here!
+                    In the {InputValues["RoomInAHouse"]} there is a pool full of {InputValues["Noun"]}.
+                    I fall asleep each night on a {InputValues["Noun"]} of {InputValues["Noun"]} and dream of {InputValues["Adjective"]} {InputValues["NounPlural"]}.
+                    It feels as though I have lived here for {InputValues["Number"]} {InputValues["MeasureOfTime"]}.
+                    I hope one day you can visit, although the only way to get here now is {InputValues["VerbEndingInIng"]} on a {InputValues["Adjective"]} {InputValues["Noun"]}!!
+
+                    --------------------------------------------------------------------------------------------------
+                """
+                );
         }
 
     }
-}
+
